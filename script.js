@@ -29,6 +29,8 @@ async function getData() {
     try {
         const response = await fetch("https://gauravgitacc.github.io/postAppData/auctionData.json");
         arr = await response.json();
+        sessionStorage.setItem("myArr", JSON.stringify(arr));
+        // alert("Added to the session storage");
         if (arr) {
             console.log("Data", arr)
             showData(arr);
@@ -39,7 +41,17 @@ async function getData() {
         console.log("Error", e);
     }
 }
-getData();
+if(sessionStorage.getItem("myArr")){
+    //thats mean user is coming againg in the session
+    // alert("getting from the session storage");
+    var myArr = JSON.parse(sessionStorage.getItem("myArr"));
+    showData(myArr);
+    arr = myArr;
+}else{
+    //user is comming to the session for the very first time
+    getData();
+}
+
 
 document.getElementById("search").addEventListener("input", () => {
     var newArr = arr.filter((item) =>
