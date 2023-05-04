@@ -32,7 +32,7 @@ async function getData() {
         sessionStorage.setItem("myArr", JSON.stringify(arr));
         // alert("Added to the session storage");
         if (arr) {
-            console.log("Data", arr)
+            // console.log("Data", arr)
             showData(arr);
             document.getElementById("loader").style.display = "none";
 
